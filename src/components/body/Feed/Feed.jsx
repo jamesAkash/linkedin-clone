@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Feed.css";
 import CreateIcon from "@mui/icons-material/Create";
 import InputOptions from "./InputOptions";
@@ -7,20 +7,52 @@ import VideoCameraBackIcon from "@mui/icons-material/VideoCameraBack";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import NotesIcon from "@mui/icons-material/Notes";
 import Post from "./Post";
+import firebase from "firebase/compat/app";
+import { db, auth } from "../../../firebase";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
 
   const sendPost = (e) => {
     e.preventDefault();
+
+    db.collection("posts").add({
+      name: "Akash James",
+      description: "This is a test",
+      message: input,
+      photoUrl: "",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+
+    setInput("");
   };
+
   return (
     <div className="feed">
       <div className="feed__inputContainer">
         <div className="feed__input">
           <CreateIcon />
           <form>
-            <input type="text" placeholder="Start Typing..." />
+            <input
+              value={input}
+              type="text"
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Start Typing..."
+            />
             <button onClick={sendPost} type="submit">
               Send
             </button>
@@ -42,14 +74,17 @@ const Feed = () => {
         </div>
       </div>
       {/* Posts */}
-      {posts.map((post) => {
-        return <Post />;
+      {posts.map(({ id, data: { name, description, message, photoUrl } }) => {
+        return (
+          <Post
+            key={id}
+            name={name}
+            description={description}
+            message={message}
+            photoUrl={photoUrl}
+          />
+        );
       })}
-      <Post
-        name="Akash James"
-        description="This is a test"
-        message="And baam this is our first Mock postsdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-      />
     </div>
   );
 };
