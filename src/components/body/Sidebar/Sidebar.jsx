@@ -23,7 +23,6 @@ const Sidebar = () => {
         <h2>Akash James</h2>
         <h4>akash.james@outlook.com</h4>
       </div>
-
       <div className="sidebar__stats">
         <div className="sidebar__stat">
           <p>Who viewed you</p>
@@ -34,7 +33,6 @@ const Sidebar = () => {
           <p className="sidebar__statNumber">2600</p>
         </div>
       </div>
-
       <div className="sidebar__bottom">
         <p>Recent</p>
         {recentItem("reactjs")}
