@@ -36,8 +36,8 @@ const Header = () => {
         <HeaderOptions Icon={BusinessCenterIcon} title="Jobs" />
         <HeaderOptions Icon={ChatIcon} title="Messaging" />
         <HeaderOptions Icon={NotificationsIcon} title="Notifications" />
-        <HeaderOptions avatar="A" title={displayName} />
-        <button type="button" onClick={logoutApp}>
+        <HeaderOptions avatar="a" title={displayName} />
+        <button className="logout" type="button" onClick={logoutApp}>
           Logout
         </button>
       </div>

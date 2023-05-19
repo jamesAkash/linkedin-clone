@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { login, logout } from "./features/userSlice";
+import Widgets from "./components/body/Widgets/Widgets";
 
 function App() {
   const user = useSelector((store) => store.user.user);
@@ -38,6 +39,7 @@ function App() {
           <div className="app__body">
             <Sidebar />
             <Feed />
+            <Widgets />
           </div>
         </>
       )}

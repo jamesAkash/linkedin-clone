@@ -1,11 +1,34 @@
 import { Avatar } from "@mui/material";
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import MessageIcon from "@mui/icons-material/Message";
 import ShareIcon from "@mui/icons-material/Share";
 import SendIcon from "@mui/icons-material/Send";
 import InputOptions from "./InputOptions";
+
+const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
+  return (
+    <Wrapper>
+      <div ref={ref} className="post__header">
+        <Avatar>{name[0].toUpperCase()}</Avatar>
+        <div className="post__info">
+          <h2>{name}</h2>
+          <p>{description}</p>
+        </div>
+      </div>
+      <div className="post__body">
+        <p>{message}</p>
+      </div>
+      <div className="post__buttons">
+        <InputOptions Icon={ThumbUpIcon} title="like" />
+        <InputOptions Icon={MessageIcon} title="comment" />
+        <InputOptions Icon={ShareIcon} title="share" />
+        <InputOptions Icon={SendIcon} title="send" />
+      </div>
+    </Wrapper>
+  );
+});
 
 const Wrapper = styled.section`
   background-color: #fff;
@@ -45,28 +68,5 @@ const Wrapper = styled.section`
     justify-content: flex-start;
   }
 `;
-
-const Post = ({ name, description, message, photoUrl }) => {
-  return (
-    <Wrapper>
-      <div className="post__header">
-        <Avatar />
-        <div className="post__info">
-          <h2>{name}</h2>
-          <p>{description}</p>
-        </div>
-      </div>
-      <div className="post__body">
-        <p>{message}</p>
-      </div>
-      <div className="post__buttons">
-        <InputOptions Icon={ThumbUpIcon} title="like" />
-        <InputOptions Icon={MessageIcon} title="comment" />
-        <InputOptions Icon={ShareIcon} title="share" />
-        <InputOptions Icon={SendIcon} title="send" />
-      </div>
-    </Wrapper>
-  );
-};
 
 export default Post;
