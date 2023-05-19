@@ -8,13 +8,18 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../features/userSlice";
+import { logout, toggleMenu } from "../../features/userSlice";
 import { auth } from "../../firebase";
 import { Avatar } from "@mui/material";
+import styled from "styled-components";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { displayName } = useSelector((store) => store.user.user);
+  const { isMenuOpen } = useSelector((store) => store.user);
+
+  console.log(isMenuOpen);
   const logoutApp = () => {
     dispatch(logout());
     auth.signOut();
@@ -31,26 +36,78 @@ const Header = () => {
           <input type="text" />
         </div>
       </div>
+
       <div className="header__right">
         <HeaderOptions Icon={HomeIcon} title="Home" />
         <HeaderOptions Icon={SupervisorAccountIcon} title="Network" />
         <HeaderOptions Icon={BusinessCenterIcon} title="Jobs" />
         <HeaderOptions Icon={ChatIcon} title="Messaging" />
         <HeaderOptions Icon={NotificationsIcon} title="Notifications" />
+
+        {/* avatar */}
         <div className="headerOption">
           <Avatar className="headerOption__icon">
             {displayName[0].toUpperCase()}
           </Avatar>
-
           <h3 className="headerOption__title">{displayName}</h3>
         </div>
 
-        <button className="logout" type="button" onClick={logoutApp}>
-          Logout
+        {/* Menu */}
+        <button className="menu__icon" onClick={() => dispatch(toggleMenu())}>
+          <MenuIcon />
         </button>
+
+        {isMenuOpen && (
+          <Wrapper>
+            <div>
+              <ChatIcon />
+              <h4>Chat</h4>
+            </div>
+            <div>
+              <HomeIcon />
+              <h4>Chat</h4>
+            </div>
+            <div>
+              <NotificationsIcon />
+              <h4>Chat</h4>
+            </div>
+            <button className="logout" type="button" onClick={logoutApp}>
+              Logout
+            </button>
+          </Wrapper>
+        )}
       </div>
     </div>
   );
 };
+
+const Wrapper = styled.div`
+  width: 120px;
+  background-color: whitesmoke;
+  position: absolute;
+  top: 65px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(12px, 2vw, 14px);
+    color: #525252;
+    gap: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  div:hover {
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+  }
+`;
 
 export default Header;

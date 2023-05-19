@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: "",
+  isMenuOpen: false,
 };
 
 export const userSlice = createSlice({
@@ -14,12 +15,15 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
     },
+    toggleMenu: (state) => {
+      state.isMenuOpen = !state.isMenuOpen;
+    },
   },
 });
 
 //selectors
 export const selectUser = (state) => state.user.user;
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, toggleMenu } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -5,6 +5,13 @@
 
 @media (max-width: 720px) {
   .feed {
+    /* margin: 0; */
+    flex: 0.8;
+  }
+}
+
+@media (max-width: 540px) {
+  .feed {
     margin: 0;
   }
 }

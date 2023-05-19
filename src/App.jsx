@@ -12,7 +12,6 @@ import Widgets from "./components/body/Widgets/Widgets";
 function App() {
   const user = useSelector((store) => store.user.user);
   const dispatch = useDispatch();
-  console.log(user);
 
   useEffect(() => {
     auth.onAuthStateChanged((userAuth) => {
@@ -29,6 +28,7 @@ function App() {
       }
     });
   }, []);
+
   return (
     <div className="app">
       {!user ? (
