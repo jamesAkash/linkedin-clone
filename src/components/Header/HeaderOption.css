@@ -7,12 +7,14 @@
   cursor: pointer;
 }
 
-.headerOption:hover {
-  color: black;
+@media (max-width: 720px) {
+  .icons {
+    display: none;
+  }
 }
 
-.headerOption__icon {
-  /* padding: auto; */
+.headerOption:hover {
+  color: black;
 }
 
 .headerOption__title {

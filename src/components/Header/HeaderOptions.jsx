@@ -1,14 +1,10 @@
 import React from "react";
 import "./HeaderOption.css";
-import Avatar from "@mui/material/Avatar";
 
-const HeaderOptions = ({ avatar, Icon, title }) => {
+const HeaderOptions = ({ Icon, title }) => {
   return (
-    <div className="headerOption">
+    <div className="headerOption icons">
       {Icon && <Icon className="headerOption__icon" />}
-      {avatar && (
-        <Avatar className="headerOption__icon">{title[0].toUpperCase()}</Avatar>
-      )}
       <h3 className="headerOption__title">{title}</h3>
     </div>
   );

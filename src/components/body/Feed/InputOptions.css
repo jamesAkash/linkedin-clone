@@ -2,14 +2,23 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   padding: 5px;
   border-radius: 5px;
+  max-width: 100%;
+  margin-left: 5px;
+}
+
+@media (max-width: 430px) {
+  .inputOptions {
+    padding: 1px;
+  }
 }
 
 .inputOptions h4 {
   font-weight: 400;
-  font-size: 13px;
+  font-size: clamp(10px, 2vw, 13px);
   margin-left: 3px;
 }
 

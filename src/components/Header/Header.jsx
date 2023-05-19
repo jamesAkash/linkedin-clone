@@ -10,6 +10,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/userSlice";
 import { auth } from "../../firebase";
+import { Avatar } from "@mui/material";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,14 @@ const Header = () => {
         <HeaderOptions Icon={BusinessCenterIcon} title="Jobs" />
         <HeaderOptions Icon={ChatIcon} title="Messaging" />
         <HeaderOptions Icon={NotificationsIcon} title="Notifications" />
-        <HeaderOptions avatar="a" title={displayName} />
+        <div className="headerOption">
+          <Avatar className="headerOption__icon">
+            {displayName[0].toUpperCase()}
+          </Avatar>
+
+          <h3 className="headerOption__title">{displayName}</h3>
+        </div>
+
         <button className="logout" type="button" onClick={logoutApp}>
           Logout
         </button>

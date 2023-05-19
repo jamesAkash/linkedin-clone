@@ -8,7 +8,7 @@ import EventNoteIcon from "@mui/icons-material/EventNote";
 import NotesIcon from "@mui/icons-material/Notes";
 import Post from "./Post";
 import firebase from "firebase/compat/app";
-import { db, auth } from "../../../firebase";
+import { db } from "../../../firebase";
 import { useSelector } from "react-redux";
 import FlipMove from "react-flip-move";
 

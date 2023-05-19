@@ -7,6 +7,12 @@
   height: fit-content;
 }
 
+@media (max-width: 520px) {
+  .sidebar {
+    position: static;
+  }
+}
+
 .sidebar__avatar {
   margin-bottom: 10px;
 }
@@ -88,6 +94,12 @@
   margin-bottom: 5px;
   padding: 5px;
   cursor: pointer;
+}
+
+@media (max-width: 530px) {
+  .sidebar__bottom {
+    display: none;
+  }
 }
 
 .sidebar__recentItem:hover {
