@@ -64,13 +64,14 @@ const Header = () => {
               <h4>Chat</h4>
             </div>
             <div>
-              <HomeIcon />
-              <h4>Chat</h4>
+              <NotificationsIcon />
+              <h4>Notifications</h4>
             </div>
             <div>
-              <NotificationsIcon />
-              <h4>Chat</h4>
+              <HomeIcon />
+              <h4>Home</h4>
             </div>
+
             <button className="logout" type="button" onClick={logoutApp}>
               Logout
             </button>
@@ -94,11 +95,11 @@ const Wrapper = styled.div`
 
   div {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    font-size: clamp(12px, 2vw, 14px);
+    font-size: clamp(10px, 2vw, 12px);
     color: #525252;
-    gap: 5px;
+    gap: 10px;
     padding: 5px;
     cursor: pointer;
   }
