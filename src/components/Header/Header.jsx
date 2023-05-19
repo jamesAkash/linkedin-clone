@@ -46,7 +46,7 @@ const Header = () => {
         {/* avatar */}
         <div className="headerOption">
           <Avatar className="headerOption__icon">
-            {displayName[0].toUpperCase()}
+            {displayName && displayName[0].toUpperCase()}
           </Avatar>
           <h3 className="headerOption__title">{displayName}</h3>
         </div>

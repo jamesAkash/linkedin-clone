@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Feed from "./components/body/Feed/Feed";
 import Sidebar from "./components/body/Sidebar/Sidebar";
 import Home from "./pages/Home";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { auth } from "./firebase";
 import { login, logout } from "./features/userSlice";
 import Widgets from "./components/body/Widgets/Widgets";
@@ -13,7 +13,7 @@ function App() {
   const user = useSelector((store) => store.user.user);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const authChange = useCallback(() => {
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         dispatch(
@@ -28,6 +28,13 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    // eslint-disable-next-line
+    return () => {
+      authChange();
+    };
+  }, [authChange]);
 
   return (
     <div className="app">

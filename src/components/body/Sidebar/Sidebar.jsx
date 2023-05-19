@@ -22,9 +22,9 @@ const Sidebar = () => {
           alt="background"
         />
         <Avatar className="sidebar__avatar">
-          {displayName[0].toUpperCase()}
+          {displayName && displayName[0].toUpperCase()}
         </Avatar>
-        <h2>{displayName}</h2>
+        <h2>{displayName && displayName}</h2>
         <h4>{email}</h4>
       </div>
       <div className="sidebar__stats">
