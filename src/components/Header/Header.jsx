@@ -19,7 +19,6 @@ const Header = () => {
   const { displayName } = useSelector((store) => store.user.user);
   const { isMenuOpen } = useSelector((store) => store.user);
 
-  console.log(isMenuOpen);
   const logoutApp = () => {
     dispatch(logout());
     auth.signOut();
